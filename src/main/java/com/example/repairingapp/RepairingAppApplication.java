@@ -25,8 +25,6 @@ public class RepairingAppApplication {
 			vehicleRepository.save(new Vehicle("FTFT-001", 2022, "Volvo", "FH500"));
 			shopRepository.save(new Shop("Kovács Autóalkatrészek", "Szeged, Kossuth Lajos sgrt. 87, 6724", "info@kovacsauto.hu", "(06 62) 468 444"));
 			shopRepository.save(new Shop("Kamion Shop Kft.", "6791 Szeged, Dorozsmai út 116", "info@kamionshopkft.hu", "+36 20 456 6403"));
-			fixtureRepository.save(new Fixture("olajszűrő"));
-			fixtureRepository.save(new Fixture("FÉNYSZÓRÓ VOLVO FM/FH2 2001-TŐL BAL"));
 		};
 	}
 
