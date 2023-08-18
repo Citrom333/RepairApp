@@ -1,5 +1,6 @@
 package com.example.repairingapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import java.util.List;
 public class Fixture {
     @Id
     @SequenceGenerator(
-            name="vehicle_sequence",
-            sequenceName = "vehicle_sequence",
+            name="fixture_sequence",
+            sequenceName = "fixture_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
@@ -28,20 +29,18 @@ public class Fixture {
             columnDefinition = "TEXT"
     )
     private String name;
-    @ManyToMany
-    @JoinTable(
-            name = "fixture_shop",
-            joinColumns = @JoinColumn(name = "shop_id"),
-            inverseJoinColumns = @JoinColumn(name = "fixture_id")
-    )
-    private List<Shop> shops = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
+@JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "fixture_work",
-            joinColumns = @JoinColumn(name = "work_id"),
-            inverseJoinColumns = @JoinColumn(name = "fixture_id")
+            joinColumns = @JoinColumn(name = "fixture_id"),
+            inverseJoinColumns = @JoinColumn(name = "work_id")
     )
-    private List<Work> works = new ArrayList<>();
+    private List<Work> works = new ArrayList<Work>();
 
     public Long getId() {
         return id;
@@ -59,12 +58,12 @@ public class Fixture {
         this.name = name;
     }
 
-    public List<Shop> getShops() {
-        return shops;
+    public Shop getShop() {
+        return shop;
     }
 
-    public void setShops(List<Shop> shops) {
-        this.shops = shops;
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
     public List<Work> getWorks() {
@@ -75,8 +74,10 @@ public class Fixture {
         this.works = works;
     }
 
-    public Fixture(String name) {
+    public Fixture(String name, Shop shop) {
+
         this.name = name;
+        this.shop =shop;
     }
 
     public Fixture() {

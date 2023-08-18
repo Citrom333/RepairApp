@@ -1,7 +1,5 @@
 package com.example.repairingapp.entities;
-
-import com.example.repairingapp.entities.Fixture;
-import com.example.repairingapp.entities.Vehicle;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -12,8 +10,8 @@ import java.util.List;
 public class Work {
     @Id
     @SequenceGenerator(
-            name="vehicle_sequence",
-            sequenceName = "vehicle_sequence",
+            name="work_sequence",
+            sequenceName = "work_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
@@ -31,8 +29,13 @@ public class Work {
     private Vehicle vehicle;
     private Date date;
     private Integer mileage;
-    @ManyToMany(mappedBy = "works")
-    private List<Fixture> fixtures = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "fixture_work",
+            joinColumns = @JoinColumn(name = "work_id"),
+            inverseJoinColumns = @JoinColumn(name = "fixture_id")
+    )
+    private List<Fixture> fixtures = new ArrayList<Fixture>();
 
     public Long getId() {
         return id;

@@ -1,8 +1,6 @@
 package com.example.repairingapp.entities;
-
-import com.example.repairingapp.entities.Fixture;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +8,8 @@ import java.util.List;
 public class Shop {
     @Id
     @SequenceGenerator(
-            name="vehicle_sequence",
-            sequenceName = "vehicle_sequence",
+            name="shop_sequence",
+            sequenceName = "shop_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
@@ -27,7 +25,8 @@ public class Shop {
     private String address;
     private String email;
     private String phoneNumber;
-    @ManyToMany(mappedBy = "shops")
+    @JsonIgnore
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Fixture> fixtures = new ArrayList<>();
 
     public Long getId() {

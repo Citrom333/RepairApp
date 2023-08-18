@@ -1,5 +1,6 @@
 package com.example.repairingapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class Vehicle {
             columnDefinition = "TEXT"
     )
     private String type;
+    @JsonIgnore
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<Work> works = new ArrayList<>();
 
@@ -106,7 +108,6 @@ public class Vehicle {
     public List<Work> getWorks() {
         return works;
     }
-
     public void setWorks(List<Work> works) {
         this.works = works;
     }
