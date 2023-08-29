@@ -7,6 +7,8 @@ import './index.css'
 import WrongPage from './Pages/WrongPage.jsx';
 import NewWork from './Pages/NewWork.jsx';
 import NewFixture from './Pages/NewFixture.jsx';
+import NewVehicle from './Pages/NewVehicle.jsx';
+import NewShop from './Pages/NewShop.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,12 +19,20 @@ const router = createBrowserRouter([
     element: <Vehicles />
   },
   {
+    path: "/newVehicle",
+    element: <NewVehicle />
+  },
+  {
     path: "/newWork",
     element: <NewWork />
   },
   {
     path: "/newFixture",
     element: <NewFixture />
+  },
+  {
+    path: "/newShop",
+    element: <NewShop />
   },
   {
     path: "/*",
