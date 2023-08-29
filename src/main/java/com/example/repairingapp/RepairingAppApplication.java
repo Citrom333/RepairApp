@@ -18,7 +18,7 @@ public class RepairingAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RepairingAppApplication.class, args);
 	}
-	@Bean
+/*	@Bean
 	CommandLineRunner commandLineRunner(VehicleRepository vehicleRepository, ShopRepository shopRepository, FixtureRepository fixtureRepository, WorkRepository workRepository) {
 		return args -> {
 			vehicleRepository.save(new Vehicle("MNM-260", 2010, "Scania", "460S"));
@@ -26,6 +26,6 @@ public class RepairingAppApplication {
 			shopRepository.save(new Shop("Kovács Autóalkatrészek", "Szeged, Kossuth Lajos sgrt. 87, 6724", "info@kovacsauto.hu", "(06 62) 468 444"));
 			shopRepository.save(new Shop("Kamion Shop Kft.", "6791 Szeged, Dorozsmai út 116", "info@kamionshopkft.hu", "+36 20 456 6403"));
 		};
-	}
 
+	};*/
 }
