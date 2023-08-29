@@ -13,7 +13,6 @@ export default function Vehicles() {
         }).then((response) => response.json())
             .then((json) => {
                 setVehicles(json);
-
             });
     const fetchWorks = (id) =>
         fetch(`/api/works/forVehicle/${id}`, {
@@ -24,6 +23,9 @@ export default function Vehicles() {
                 setWorks(json);
 
             });
+    const fetchUpdate = (vehicle) => {
+
+    }
     useEffect(() => {
         localStorage.clear();
         fetchVehicles();
@@ -41,6 +43,13 @@ export default function Vehicles() {
             fetchWorks(showVehicle.id)
     }, [showVehicle]
     );
+    const handleUpdate = (id) => {
+        let vehicleToUpdate = vehicles.find(vehicle => vehicle.id == id);
+        fetchUpdate(vehicleToUpdate)
+    }
+    const handleDelete = (id) => {
+        fetchDelete(id);
+    }
     return (
         <div>
             {showVehicle === null ?
