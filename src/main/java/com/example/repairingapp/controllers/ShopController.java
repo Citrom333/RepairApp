@@ -14,11 +14,11 @@ public class ShopController {
         this.shopService = shopService;
     }
     @PostMapping
-    public void AddShop(@RequestBody Shop shop){
-        shopService.AddShop(shop);
+    public void addShop(@RequestBody Shop shop){
+        shopService.addShop(shop);
     }
     @GetMapping
-     public List<Shop> GetShops() {
-       return shopService.GetShops();
+     public List<Shop> getShops() {
+       return shopService.getShops();
      }
 }

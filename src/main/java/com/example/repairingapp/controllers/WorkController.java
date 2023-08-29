@@ -1,8 +1,5 @@
 package com.example.repairingapp.controllers;
-
-import com.example.repairingapp.entities.Vehicle;
 import com.example.repairingapp.entities.Work;
-import com.example.repairingapp.services.VehicleService;
 import com.example.repairingapp.services.WorkService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,10 +28,8 @@ public class WorkController {
         return workService.getWork(id);
     }
     @PostMapping
-    public void AddNewWork(@RequestBody Work work) {
-        System.out.println("*******************************!!!!!!!!!!!!!!!!!!!!!*********************");
-        System.out.println(work.getFixtures().get(0));
-        workService.AddNewWork(work);
+    public void addNewWork(@RequestBody Work work) {
+        workService.addNewWork(work);
     }
 
     @PutMapping("/{id}")

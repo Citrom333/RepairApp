@@ -15,16 +15,16 @@ private final FixtureService fixtureService;
     }
 
     @GetMapping
-    public List<Fixture> GetFixtures()
+    public List<Fixture> getFixtures()
     {
 
-        return fixtureService.GetFixtures();
+        return fixtureService.getFixtures();
     };
 
     @PostMapping
-    public void AddFixture(@RequestBody Fixture fixture)
+    public void addFixture(@RequestBody Fixture fixture)
     {
-        fixtureService.AddNewFixture(fixture);
+        fixtureService.addNewFixture(fixture);
     }
 
 
