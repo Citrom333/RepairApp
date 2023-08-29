@@ -47,3 +47,36 @@
 ul {
   list-style-type: none;
 }
+
+.custom-table {
+  width: 100vw;
+  margin: 0;
+  display: block;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  width: auto;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #523707aa;
+}
+
+tr:hover {
+  background-color: rgb(95, 108, 71);
+  color: antiquewhite;
+}
+
+.table-row-0 {
+  background-color: bisque;
+}
+
+.table-row-1 {
+  background-color: #888;
+}
