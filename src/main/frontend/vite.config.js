@@ -7,10 +7,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: 'http://localhost:8080',
+        target: 'http://repairing-app:8080',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
-        secure: false
+        secure: false,
+        ws: true
       },
     },
     host: true,
