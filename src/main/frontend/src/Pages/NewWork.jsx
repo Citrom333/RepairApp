@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 export default function NewWork() {
     const navigate = useNavigate();
     const [name, setName] = useState("");
@@ -22,7 +21,7 @@ export default function NewWork() {
             });
     useEffect(() => {
         fetchFixtures();
-        console.log(fixtures);
+        console.log(JSON.parse(localStorage.getItem("vehicle")).licensePlate);
         console.log(chosenFixtures);
     }, [fixtures.length, chosenFixtures.length])
     const handleSubmit = async (e) => {
@@ -68,7 +67,7 @@ export default function NewWork() {
         <>
             <div>
                 <form className="form" onSubmit={handleSubmit}>
-                    <h1>New work for vehicle {localStorage.getItem("vehicle").licensePlate}</h1>
+                    <h1>New work for vehicle {JSON.parse(localStorage.getItem("vehicle")).licensePlate}</h1>
                     <label>
                         <p>Name</p>
                         <input
