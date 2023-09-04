@@ -2,11 +2,26 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+
+}
+
+body {
+  background-color: rgb(28, 24, 52);
+  flex: auto;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
 }
 
 .logo {
-  height: 6em;
+  height: 20em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.mini_logo {
+  height: 7em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
@@ -18,22 +33,6 @@
 
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
 
 .card {
@@ -48,6 +47,38 @@ ul {
   list-style-type: none;
 }
 
+.vehicle_list_element {
+  font-size: 30px;
+}
+
+.vehicle_list_element:hover {
+
+  color: rgb(140, 162, 177);
+}
+
+button {
+  margin: 10px;
+  background-color: rgb(72, 73, 95);
+  color: rgb(164, 241, 236);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
 .custom-table {
   width: 100vw;
   margin: 0;
@@ -56,6 +87,8 @@ ul {
 }
 
 table {
+  padding: auto;
+  border-radius: 8%;
   width: 100%;
   border-collapse: collapse;
 }
@@ -69,7 +102,7 @@ td {
 }
 
 tr:hover {
-  background-color: rgb(95, 108, 71);
+  background-color: rgb(96, 115, 147);
   color: antiquewhite;
 }
 
@@ -79,4 +112,115 @@ tr:hover {
 
 .table-row-1 {
   background-color: #888;
+}
+
+.page {
+  margin-left: 10px;
+  text-align: center;
+  animation: fadein 2s;
+  height: 100vh;
+  /* A viewport magasságát veszi alapul */
+  overflow: hidden;
+  /* Rejtse el a tartalomtól való kifolyást */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+.vehicle_details {
+  animation: 1s ease-out 0s 1 slideIn;
+  padding: 30px;
+  background-color: rgb(28, 24, 52);
+  z-index: -1;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+form input,
+form textarea,
+form select {
+  /* Add some basic styling */
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1em;
+
+  /* Add some spacing between form controls */
+  margin-bottom: 1em;
+
+  /* Style the focus state */
+  &:focus {
+    outline: none;
+    border-color: #666;
+  }
+}
+
+/* Style the textarea element specifically */
+form textarea {
+  min-height: 200px;
+  resize: vertical;
+  color: #7f8387;
+}
+
+/* Style the select element specifically */
+form select {
+  /* Reset the appearance to remove the default styling */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Add a small arrow to the select element */
+  background-color: rgb(72, 73, 95);
+  color: #a8b2bd;
+
+  background-size: 0.65em auto;
+}
+
+form input {
+  padding: 20px;
+  background-color: rgb(72, 73, 95);
+  color: rgb(164, 241, 236);
+}
+
+
+.sideBar {
+  z-index: 3;
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  /* Elhelyezés az oldal alján */
+  top: 0;
+  /* A navbar magasságától a teljes magasságig terjed */
+  overflow-y: auto;
+  left: 0;
+  /* Görgethetőség a tartalom esetén */
+  /*  display: flex;*/
+}
+
+.sideBar_list {
+  grid: 0%
+}
+
+.sideBar_list_element {
+  display: grid;
+  padding: 10px 0;
+  font-size: larger;
 }
