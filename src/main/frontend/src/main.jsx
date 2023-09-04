@@ -9,6 +9,7 @@ import NewWork from './Pages/NewWork.jsx';
 import NewFixture from './Pages/NewFixture.jsx';
 import NewVehicle from './Pages/NewVehicle.jsx';
 import NewShop from './Pages/NewShop.jsx';
+import UpdateVehicle from './Pages/UpdateVehicle.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/newShop",
     element: <NewShop />
+  },
+  {
+    path: "/updateVehicle",
+    element: <UpdateVehicle />
   },
   {
     path: "/*",
