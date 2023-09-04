@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import Navbar from "../Components/Navbar";
 export default function NewVehicle() {
     const [licensePlate, setLicensePlate] = useState("");
     const [yearOfManufacture, setYearOfManufacture] = useState("");
@@ -41,46 +41,48 @@ export default function NewVehicle() {
     return (
         <>
             <div>
-                <form className="form" onSubmit={handleSubmit}>
-                    <h1>New vehicle</h1>
-                    <label>
-                        <p>License plate</p>
-                        <input
-                            onChange={(e) => setLicensePlate(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        <p>Year of manufacture</p>
-                        <input
-                            onChange={(e) => setYearOfManufacture(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        <p>Brand</p>
-                        <input
-                            onChange={(e) => setBrand(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        <p>Type</p>
-                        <input
-                            onChange={(e) => setType(e.target.value)}
-                        />
-                    </label>
+                <Navbar />
+                <div className="page">
+                    <form className="form" onSubmit={handleSubmit}>
+                        <h1>New vehicle</h1>
+                        <label>
+                            <p>License plate</p>
+                            <input
+                                onChange={(e) => setLicensePlate(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            <p>Year of manufacture</p>
+                            <input
+                                onChange={(e) => setYearOfManufacture(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            <p>Brand</p>
+                            <input
+                                onChange={(e) => setBrand(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            <p>Type</p>
+                            <input
+                                onChange={(e) => setType(e.target.value)}
+                            />
+                        </label>
+                        <div>
+                            <input className="submit" type="submit" value="Add vehicle" />
+                        </div>
+                    </form>
+                    <div><p>{message}</p></div>
                     <div>
-                        <input className="submit" type="submit" value="Add vehicle" />
+                        <a href="/vehicles">
+                            <button >
+                                Back
+                            </button>
+                        </a>
                     </div>
-                </form>
-                <div><p>{message}</p></div>
-                <div>
-                    <a href="/vehicles">
-                        <button >
-                            Back
-                        </button>
-                    </a>
                 </div>
             </div>
-
         </>
     )
 }
