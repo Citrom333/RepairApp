@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import Navbar from "../Components/Navbar";
 export default function NewShop() {
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
@@ -33,12 +33,14 @@ export default function NewShop() {
                 setMessage("Some error occured");
             }
         } catch (err) {
-            setMessage(err);
+            console.log(err)
+            setMessage("Some error occured");
         }
     };
     return (
-        <>
-            <div>
+        <div>
+            <Navbar />
+            <div className="page">
                 <form className="form" onSubmit={handleSubmit}>
                     <h1>New shop</h1>
                     <label>
@@ -79,6 +81,6 @@ export default function NewShop() {
                 </div>
             </div>
 
-        </>
+        </div>
     )
 }
