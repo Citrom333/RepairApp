@@ -25,7 +25,9 @@ export default function NewShop() {
             });
             if (res.status === 200) {
                 setName("");
-                setShop("");
+                setAddress("");
+                setEmail("");
+                setPhoneNumber("");
                 setMessage("Shop saved successfully");
             } else {
                 setMessage("Some error occured");
