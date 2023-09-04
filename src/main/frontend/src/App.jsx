@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import gears from '/images/gears-5908.gif'
 import './App.css'
 
 function App() {
@@ -8,7 +8,8 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="page">
+        <img src={gears} className="logo" alt="Vite logo" />
         <h1>Assembly workshop</h1>
         <a href="/vehicles">
           <button >
