@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
+import Navbar from '../Components/Navbar';
 export default function NewWork() {
     const navigate = useNavigate();
     const [name, setName] = useState("");
@@ -56,7 +56,7 @@ export default function NewWork() {
                 setMessage("Some error occured");
             }
         } catch (err) {
-            setMessage(err);
+            setMessage("Some error occured");
         }
     };
     const handleNewFixture = () => {
@@ -64,8 +64,9 @@ export default function NewWork() {
         navigate('/newfixture');
     }
     return (
-        <>
-            <div>
+        <div>
+            <Navbar />
+            <div className="page">
                 <form className="form" onSubmit={handleSubmit}>
                     <h1>New work for vehicle {JSON.parse(localStorage.getItem("vehicle")).licensePlate}</h1>
                     <label>
@@ -129,7 +130,6 @@ export default function NewWork() {
                     </a>
                 </div>
             </div>
-
-        </>
+        </div>
     )
 }
