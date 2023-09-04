@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import Navbar from "../Components/Navbar";
 export default function NewFixture() {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [shops, setShops] = useState([]);
     const [shop, setShop] = useState("");
@@ -44,8 +46,9 @@ export default function NewFixture() {
         }
     };
     return (
-        <>
-            <div>
+        <div>
+            <Navbar />
+            <div className="page">
                 <form className="form" onSubmit={handleSubmit}>
                     <h1>New fixture</h1>
                     <label>
@@ -56,7 +59,7 @@ export default function NewFixture() {
                     </label>
                     <label>
                         <p>Shops</p>
-                        <select onChange={(e) => { e.target.value >= 0 ? setShop(e.target.value) : e.target.value === -1 ? handleNewShop() : "" }}>
+                        <select onChange={(e) => { e.target.value >= 0 ? setShop(e.target.value) : e.target.value == -1 ? handleNewShop() : "" }}>
                             <option value={-2}></option>
                             <option value={-1}>New</option>
                             {shops.length !== 0 ? shops.map((s, i) => (<option value={s.id}>{s.name}</option>)) : ""}
@@ -76,6 +79,6 @@ export default function NewFixture() {
                 </div>
             </div>
 
-        </>
+        </div>
     )
 }
