@@ -24,14 +24,18 @@ export default function NewVehicle() {
                 }),
             });
             if (res.status === 200) {
-                setName("");
-                setShop("");
+                setBrand("");
+                setLicensePlate("");
+                setType("");
+                setYearOfManufacture("");
                 setMessage("Vehicle saved successfully");
             } else {
+                console.log(res)
                 setMessage("Some error occured");
             }
         } catch (err) {
-            setMessage(err);
+            console.log(err)
+            setMessage("Some error occured");
         }
     };
     return (
