@@ -26,9 +26,25 @@ export default function Vehicles() {
                 setWorks(json);
 
             });
-    const fetchUpdate = (vehicle) => {
 
+    const fetchDelete = (id) => {
+        fetch(`/api/vehicles/${id}`, {
+            method: "DELETE",
+        }).then((response) => {
+            if (response.status === 200) {
+                setMessage("Vehicle deleted");
+                setShowConfirm(false);
+                fetchVehicles(); // Ezt a függvényt definiálnod kell, hogy frissítse a járművek állapotát
+            } else {
+                setMessage("Some error occured");
+            }
+        })
+            .catch((error) => {
+                setMessage("Some error occured");
+            });
     }
+
+
     useEffect(() => {
         localStorage.clear();
         fetchVehicles();
@@ -38,6 +54,11 @@ export default function Vehicles() {
     }, [vehicles.length])
     const handlePickVehicle = (vehicle) => {
         setShowVehicle(vehicle)
+    }
+    const handleDelete = (id) => {
+        console.log("delete" + showVehicle.id)
+        fetchDelete(id);
+        setShowVehicle(null);
     }
     useEffect(() => {
         console.log(showVehicle)
