@@ -45,6 +45,10 @@ export default function NewFixture() {
             setMessage(err);
         }
     };
+    const handleNewShop = () => {
+        console.log("NEW");
+        navigate('/newShop');
+    }
     return (
         <div>
             <Navbar />
