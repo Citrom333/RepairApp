@@ -8,19 +8,8 @@ services:
       - ./target/RepairingApp-0.0.1-SNAPSHOT.jar:/app/app.jar
     working_dir: /app
     command: ["java", "-jar", "app.jar"]
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:sqlserver://database:1433;databaseName=repairingDatabase
-
     depends_on:
       - database
-
-  frontend:
-    build:
-      context: ./src/main/frontend
-    ports:
-      - "5173:5173"
-    depends_on:
-      - repairing-app
 
   database:
     image: mcr.microsoft.com/mssql/server:2022-latest
