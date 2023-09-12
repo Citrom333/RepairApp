@@ -10,6 +10,8 @@ import NewFixture from './Pages/NewFixture.jsx';
 import NewVehicle from './Pages/NewVehicle.jsx';
 import NewShop from './Pages/NewShop.jsx';
 import UpdateVehicle from './Pages/UpdateVehicle.jsx';
+import NewEmail from './Pages/NewEmail.jsx';
+import DetailsOfWork from './Pages/DetailsOfWork.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
   {
     path: "/updateVehicle",
     element: <UpdateVehicle />
+  },
+  {
+    path: "/newEmail",
+    element: <NewEmail />
+  },
+  {
+    path: "/detailsOfWorks/:id",
+    element: <DetailsOfWork />
   },
   {
     path: "/*",
