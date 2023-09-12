@@ -95,7 +95,7 @@ table {
 
 th,
 td {
-  width: auto;
+  width: 20vw;
   padding: 10px;
   text-align: left;
   border: 1px solid #523707aa;
@@ -223,4 +223,36 @@ form input {
   display: grid;
   padding: 10px 0;
   font-size: larger;
+}
+
+.emailContent {
+  height: 20vh;
+  padding: 20px;
+  background-color: rgb(72, 73, 95);
+  color: rgb(164, 241, 236);
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1em;
+  margin-bottom: 1em;
+
+  &:focus {
+    outline: none;
+    border-color: #666;
+  }
+}
+
+.pagination {
+  display: flex;
+
+  justify-content: center;
+}
+
+.pagination a {
+  flex: auto;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  font-size: 30px;
 }
