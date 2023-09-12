@@ -2,13 +2,30 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import '../App.css'
+import ReactPaginate from 'react-paginate';
+import { useNavigate } from "react-router-dom";
+
+
 export default function Vehicles() {
+    const navigate = useNavigate()
     const location = useLocation();
+    const [currentPage, setCurrentPage] = useState(1);
     const [vehicles, setVehicles] = useState([]);
     const [works, setWorks] = useState([]);
     const [showVehicle, setShowVehicle] = useState(null);
     const [message, setMessage] = useState("");
     const [showConfirm, setShowConfirm] = useState(false);
+    const [showWork, setShowWork] = useState(false);
+    const [itemOffset, setItemOffset] = useState(0);
+
+    const handlePageClick = (selected) => {
+        const newOffset = selected.selected + 1;
+        console.log(
+            `User requested page number ${newOffset}, which is offset ${(newOffset - 1) * itemsPerPage}`
+        );
+        setCurrentPage(newOffset);
+    };
+
     const fetchVehicles = () =>
         fetch("/api/vehicles", {
             method: "GET",
@@ -63,9 +80,21 @@ export default function Vehicles() {
     useEffect(() => {
         console.log(showVehicle)
         localStorage.setItem("vehicle", JSON.stringify(showVehicle));
-        if (showVehicle !== null)
+        if (showVehicle !== null) {
             fetchWorks(showVehicle.id)
+        }
+
     }, [showVehicle]);
+    const itemsPerPage = 4;
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentWorks = works.slice(startIndex, endIndex);
+    const pageCount = Math.ceil(works.length / itemsPerPage);
+    const showWorkDetails = (workToShow) => {
+        navigate(`/detailsOfWorks/${workToShow.id}`);
+    }
+
     return (
         <div>
             <Navbar />
@@ -109,21 +138,34 @@ export default function Vehicles() {
                                         <th>Date of work</th>
                                         <th>Mileage</th>
                                         <th>Name</th>
-                                        <th>Comment</th>
-                                        <th>Fixtures</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {works.length !== 0 ? works.map((work, i) =>
-                                        <tr className={`table-row-${i % 2}`} key={i}>
-                                            <td>{new Date(work.date).getFullYear()}-{(new Date(work.date).getMonth() + 1).toString().padStart(2, '0')}-{new Date(work.date).getDate().toString().padStart(2, '0')}</td>
+                                    {currentWorks.length !== 0 ? currentWorks.map((work, i) => (
+                                        <tr className={`table-row-${i % 2}`} key={i} onClick={() => showWorkDetails(work)}>
+                                            <td>
+                                                {new Date(work.date).getFullYear()}-{(new Date(work.date).getMonth() + 1).toString().padStart(2, '0')}-{new Date(work.date).getDate().toString().padStart(2, '0')}
+                                            </td>
                                             <td>{work.mileage}</td>
                                             <td>{work.name}</td>
-                                            <td>{work.comment}</td>
-                                            <td><div>{work.fixtures.map(f => (<p>{f.name}</p>))}</div></td>
-                                        </tr>) : <tr></tr>}
+                                        </tr>
+                                    )) : <tr></tr>}
                                 </tbody>
                             </table>
+                            {works.length > 0 ? <ReactPaginate className="pagination"
+                                breakLabel="..."
+                                nextLabel="next >"
+                                onPageChange={handlePageClick}
+                                pageRangeDisplayed={5}
+                                pageCount={pageCount}
+                                previousLabel="< previous"
+                                renderOnZeroPageCount={null}
+                                initialPage={currentPage - 1} // Hozzáadva
+                                containerClassName={"pagination"}
+                                subContainerClassName={"pages pagination"}
+                                activeClassName={"active"}
+                            /> : ""}
                         </div>
                         <div>
                             <a href="/updateVehicle"><button>Update</button></a>
@@ -142,6 +184,7 @@ export default function Vehicles() {
                             <button onClick={() => setShowVehicle(null)}>BACK</button>
                         </div>
                     </div>}
+                <p>{message}</p>
             </div>
         </div>
     )
