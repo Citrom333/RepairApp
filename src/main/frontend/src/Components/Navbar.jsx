@@ -9,7 +9,7 @@ export default function Navbar() {
                 <li className='sideBar_list_element'><a href="/vehicles">Vehicles</a></li>
                 <li className='sideBar_list_element'><a href="/newShop">Add new shop</a></li>
                 <li className='sideBar_list_element'><a href="/newFixture">New fixture</a></li>
-                {/* További menüpontok */}
+                <li className='sideBar_list_element'><a href="/newEmail">Send e-mail to shop</a></li>
             </ul>
         </div>
     );
