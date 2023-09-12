@@ -11,12 +11,21 @@ services:
     depends_on:
       - database
 
+  frontend:
+    build:
+      context: ./src/main/frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - repairing-app
+
   database:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: ASDasd:123
       MSSQL_PID: Express
+
     ports:
       - "1433:1433"
     volumes:
