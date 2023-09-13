@@ -21,4 +21,8 @@ public class ShopController {
      public List<Shop> getShops() {
        return shopService.getShops();
      }
+    @DeleteMapping("/{id}")
+    public void deleteShop(@PathVariable Long id) {
+        shopService.deleteShop(id);
+    }
 }

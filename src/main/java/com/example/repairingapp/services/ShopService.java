@@ -22,4 +22,7 @@ public class ShopService {
     {
         return shopRepository.findAll();
     }
+    public void deleteShop(Long id) {
+        shopRepository.deleteById(id);
+    }
 }
