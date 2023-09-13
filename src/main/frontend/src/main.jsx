@@ -12,6 +12,7 @@ import NewShop from './Pages/NewShop.jsx';
 import UpdateVehicle from './Pages/UpdateVehicle.jsx';
 import NewEmail from './Pages/NewEmail.jsx';
 import DetailsOfWork from './Pages/DetailsOfWork.jsx';
+import ListOfShops from './Pages/ListOfShops.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/detailsOfWorks/:id",
     element: <DetailsOfWork />
+  },
+  {
+    path: "/shops",
+    element: <ListOfShops />
   },
   {
     path: "/*",
