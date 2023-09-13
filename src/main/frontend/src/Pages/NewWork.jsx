@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
+import gears from '/images/pngwing.com.png'
 export default function NewWork() {
     const navigate = useNavigate();
     const [name, setName] = useState("");
@@ -103,20 +104,6 @@ export default function NewWork() {
                         </select>
                         <div><p>Used fixtures: </p>{chosenFixtures.map(f => (<p>{f.name}</p>))}</div>
                     </label>
-                    {/* <label>
-                        <p>Choose an avatar picture</p>
-                        <div className="avatarPics">
-                            {avatarPics.map((pic, index) =>
-                                <div key={index} >
-                                    <img
-                                        className="avatarPic"
-                                        id={chosenPic === pic ? "chosenPicture" : ""}
-                                        src={pic}
-                                        onClick={() => setChosenPic(pic)}>
-                                    </img>
-                                </div>)}
-                        </div>
-                    </label> */}
                     <div>
                         <input className="submit" type="submit" value="Save work" />
                     </div>
@@ -129,6 +116,7 @@ export default function NewWork() {
                         </button>
                     </a>
                 </div>
+                <img src={gears} className="backgroundGear" alt="gear" />
             </div>
         </div>
     )
