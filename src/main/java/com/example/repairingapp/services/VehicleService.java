@@ -29,6 +29,8 @@ public class VehicleService {
         Vehicle existingVehicle = vehicleRepository.findById(id).orElse(null);
         if (existingVehicle != null) {
             // Update the properties of the existingVehicle object with the values from updatedVehicle
+            existingVehicle.setLicensePlate(updatedVehicle.getLicensePlate());
+            existingVehicle.setYearOfManufacture(updatedVehicle.getYearOfManufacture());
             existingVehicle.setBrand(updatedVehicle.getBrand());
             existingVehicle.setType(updatedVehicle.getType());
             // Update other properties as needed

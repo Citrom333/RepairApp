@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
-export default function NewFixture() {
+export default function NewEmail() {
     const navigate = useNavigate();
-    const [name, setName] = useState("");
-    const [shops, setShops] = useState([]);
+    const [address, setAddress] = useState("");
+    const [subject, setSubject] = useState([]);
+    const [content, setContent] = useState("");
+    const [shops, setShops] = useState("");
     const [shop, setShop] = useState("");
+
     const [message, setMessage] = useState("");
+
     const fetchShops = () =>
         fetch("/api/shops", {
             method: "GET",
@@ -22,22 +26,24 @@ export default function NewFixture() {
     }, [shops.length])
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(`name: ${name}, shop: ${shops.find(s => s.id == shop).name}`);
+        console.log(`address: ${address}`);
         try {
-            let res = await fetch("/api/fixtures", {
+            let res = await fetch("/api/sendEmail", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: name,
-                    shop: shops.find(s => s.id == shop),
+                    address: address,
+                    subject: subject,
+                    content: content,
                 }),
             });
             if (res.status === 200) {
-                setName("");
-                setShop("");
-                setMessage("Fixture saved successfully");
+                setAddress("");
+                setSubject("");
+                setContent("");
+                setMessage("E-mail was sent successfully")
             } else {
                 setMessage("Some error occured");
             }
@@ -45,32 +51,40 @@ export default function NewFixture() {
             setMessage(err);
         }
     };
-    const handleNewShop = () => {
-        console.log("NEW");
-        navigate('/newShop');
+    const handleShopPick = (shop) => {
+        setAddress(shops.find(s => s.id == shop).email);
     }
     return (
         <div>
             <Navbar />
             <div className="page">
                 <form className="form" onSubmit={handleSubmit}>
-                    <h1>New fixture</h1>
+                    <h1>Send e-mail to the shop</h1>
                     <label>
-                        <p>Name</p>
-                        <input
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </label>
-                    <label>
-                        <p>Shops</p>
-                        <select onChange={(e) => { e.target.value >= 0 ? setShop(e.target.value) : e.target.value == -1 ? handleNewShop() : "" }}>
+                        <p>Shop</p>
+                        <select onChange={(e) => { e.target.value >= 0 ? handleShopPick(e.target.value) : "" }}>
                             <option value={-2}></option>
-                            <option value={-1}>New</option>
                             {shops.length !== 0 ? shops.map((s, i) => (<option value={s.id}>{s.name}</option>)) : ""}
                         </select>
                     </label>
+                    <label>
+                        <p>Subject</p>
+                        <input
+                            onChange={(e) => setSubject(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        <p>Content</p>
+                        <textarea
+                            className="emailContent"
+                            rows="4"
+                            cols="50"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                        />
+                    </label>
                     <div>
-                        <input className="submit" type="submit" value="Add fixture" />
+                        <input className="submit" type="submit" value="Send e-mail" />
                     </div>
                 </form>
                 <div><p>{message}</p></div>

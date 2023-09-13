@@ -14,11 +14,11 @@ public class FixtureService {
         this.fixtureRepository = fixtureRepository;
     }
 
-    public void AddNewFixture(Fixture fixture){
+    public void addNewFixture(Fixture fixture){
         fixtureRepository.save(fixture);
     }
 
-    public List<Fixture> GetFixtures() {
+    public List<Fixture> getFixtures() {
         return fixtureRepository.findAll();
     }
 }

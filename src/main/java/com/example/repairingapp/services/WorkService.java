@@ -31,7 +31,7 @@ public class WorkService {
         return result;
     }
 
-    public void AddNewWork(Work work) {
+    public void addNewWork(Work work) {
          workRepository.save(work);
     }
 

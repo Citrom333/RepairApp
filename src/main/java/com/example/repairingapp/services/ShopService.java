@@ -14,12 +14,15 @@ public class ShopService {
     public ShopService(ShopRepository shopRepository) {
         this.shopRepository = shopRepository;
     }
-    public void AddShop(Shop shop){
+    public void addShop(Shop shop){
     shopRepository.save(shop);
     }
 
-    public List<Shop> GetShops()
+    public List<Shop> getShops()
     {
         return shopRepository.findAll();
+    }
+    public void deleteShop(Long id) {
+        shopRepository.deleteById(id);
     }
 }

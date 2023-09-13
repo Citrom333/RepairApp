@@ -3,16 +3,15 @@ package com.example.repairingapp.controllers;
 import com.example.repairingapp.entities.Vehicle;
 import com.example.repairingapp.services.VehicleService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("vehicles")
-public class vehicleController {
+public class VehicleController {
     private final VehicleService vehicleService;
 
-    public vehicleController(VehicleService vehicleService) {
+    public VehicleController(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
     }
 
