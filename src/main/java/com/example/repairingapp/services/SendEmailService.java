@@ -16,7 +16,7 @@ public class SendEmailService {
         Content content = new Content("text/plain", emailDetails.getContent());
         Mail mail = new Mail(from, subject, to, content);
 
-        SendGrid sg = new SendGrid("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"); // Az API kulcsot a .env fájlból töltjük be
+        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
