@@ -256,3 +256,9 @@ form input {
   transition: background-color .3s;
   font-size: 30px;
 }
+
+.backgroundGear {
+  top: 0;
+  right: 0;
+  position: fixed;
+}
