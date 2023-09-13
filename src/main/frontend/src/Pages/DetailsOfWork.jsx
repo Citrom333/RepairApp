@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import '../App.css'
+import DeleteModal from "../Components/DeleteModal";
 export default function DetailsOfWork() {
     const { id } = useParams();
     const [work, setWork] = useState();
@@ -39,7 +40,7 @@ export default function DetailsOfWork() {
         console.log("fetch")
     }, [])
 
-    const handleDelete = () => {
+    const handleDelete = (e) => {
         console.log("delete")
         fetchDelete();
     }
@@ -63,13 +64,7 @@ export default function DetailsOfWork() {
                     <div>
                         <button onClick={() => setShowConfirm(true)}>Delete</button>
                     </div>
-                    {showConfirm == false ? "" : <div id="deleteModal" class="modal">
-                        <div class="modal-content">
-                            <p>Do you really want to delete?</p>
-                            <button onClick={() => handleDelete()} id="confirmDelete">Yes</button>
-                            <button onClick={() => setShowConfirm(false)} id="cancelDelete">No</button>
-                        </div>
-                    </div>}
+                    {showConfirm == false ? "" : <DeleteModal handleDelete={handleDelete} itemToDelete={""} setShowConfirm={setShowConfirm} />}
                     <p>{message}</p>
                     <div>
                         <a href="/vehicles">

@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import '../App.css'
-import ReactPaginate from 'react-paginate';
 import { useNavigate } from "react-router-dom";
-
-
+import VehiclesTable from "../Components/VehiclesTable.jsx";
+import Pagination from "../Components/Pagination";
+import DeleteModal from "../Components/DeleteModal";
 export default function Vehicles() {
     const navigate = useNavigate()
-    const location = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [vehicles, setVehicles] = useState([]);
     const [works, setWorks] = useState([]);
     const [showVehicle, setShowVehicle] = useState(null);
     const [message, setMessage] = useState("");
     const [showConfirm, setShowConfirm] = useState(false);
-    const [showWork, setShowWork] = useState(false);
-    const [itemOffset, setItemOffset] = useState(0);
 
     const handlePageClick = (selected) => {
         const newOffset = selected.selected + 1;
@@ -51,7 +47,7 @@ export default function Vehicles() {
             if (response.status === 200) {
                 setMessage("Vehicle deleted");
                 setShowConfirm(false);
-                fetchVehicles(); // Ezt a függvényt definiálnod kell, hogy frissítse a járművek állapotát
+                fetchVehicles();
             } else {
                 setMessage("Some error occured");
             }
@@ -60,14 +56,9 @@ export default function Vehicles() {
                 setMessage("Some error occured");
             });
     }
-
-
     useEffect(() => {
         localStorage.clear();
         fetchVehicles();
-        console.log(vehicles);
-        console.log(location);
-        console.log(vehicles.length)
     }, [vehicles.length])
     const handlePickVehicle = (vehicle) => {
         setShowVehicle(vehicle)
@@ -83,17 +74,15 @@ export default function Vehicles() {
         if (showVehicle !== null) {
             fetchWorks(showVehicle.id)
         }
-
     }, [showVehicle]);
+    const showWorkDetails = (workToShow) => {
+        navigate(`/detailsOfWorks/${workToShow.id}`);
+    }
     const itemsPerPage = 4;
-
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentWorks = works.slice(startIndex, endIndex);
     const pageCount = Math.ceil(works.length / itemsPerPage);
-    const showWorkDetails = (workToShow) => {
-        navigate(`/detailsOfWorks/${workToShow.id}`);
-    }
 
     return (
         <div>
@@ -132,39 +121,11 @@ export default function Vehicles() {
                         <h3>Brand: {showVehicle.brand}</h3>
                         <h3>Type: {showVehicle.type}</h3>
                         <div className='table'>
-                            <table>
-                                <thead className='table-head'>
-                                    <tr>
-                                        <th>Date of work</th>
-                                        <th>Mileage</th>
-                                        <th>Name</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {currentWorks.length !== 0 ? currentWorks.map((work, i) => (
-                                        <tr className={`table-row-${i % 2}`} key={i} onClick={() => showWorkDetails(work)}>
-                                            <td>
-                                                {new Date(work.date).getFullYear()}-{(new Date(work.date).getMonth() + 1).toString().padStart(2, '0')}-{new Date(work.date).getDate().toString().padStart(2, '0')}
-                                            </td>
-                                            <td>{work.mileage}</td>
-                                            <td>{work.name}</td>
-                                        </tr>
-                                    )) : <tr></tr>}
-                                </tbody>
-                            </table>
-                            {works.length > 0 ? <ReactPaginate className="pagination"
-                                breakLabel="..."
-                                nextLabel="next >"
-                                onPageChange={handlePageClick}
-                                pageRangeDisplayed={5}
+                            <VehiclesTable currentWorks={currentWorks} showWorkDetails={showWorkDetails} />
+                            {works.length > 0 ? <Pagination
                                 pageCount={pageCount}
-                                previousLabel="< previous"
-                                renderOnZeroPageCount={null}
-                                initialPage={currentPage - 1} // Hozzáadva
-                                containerClassName={"pagination"}
-                                subContainerClassName={"pages pagination"}
-                                activeClassName={"active"}
+                                onPageChange={handlePageClick}
+                                currentPage={currentPage}
                             /> : ""}
                         </div>
                         <div>
@@ -173,13 +134,7 @@ export default function Vehicles() {
                         <div>
                             <button onClick={() => setShowConfirm(true)}>Delete</button>
                         </div>
-                        {showConfirm == false ? "" : <div id="deleteModal" class="modal">
-                            <div class="modal-content">
-                                <p>Do you really want to delete?</p>
-                                <button onClick={() => handleDelete(showVehicle.id)} id="confirmDelete">Yes</button>
-                                <button onClick={() => setShowConfirm(false)} id="cancelDelete">No</button>
-                            </div>
-                        </div>}
+                        {showConfirm == false ? "" : <DeleteModal handleDelete={handleDelete} itemToDelete={showVehicle} setShowConfirm={setShowConfirm} />}
                         <div>
                             <button onClick={() => setShowVehicle(null)}>BACK</button>
                         </div>
@@ -189,3 +144,5 @@ export default function Vehicles() {
         </div>
     )
 }
+
+
