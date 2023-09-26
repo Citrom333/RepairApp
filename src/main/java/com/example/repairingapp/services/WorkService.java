@@ -42,7 +42,7 @@ public class WorkService {
             existingWork.setName(updatedWork.getName());
             existingWork.setComment(updatedWork.getComment());
             existingWork.setVehicle(updatedWork.getVehicle());
-            existingWork.setFixtures(updatedWork.getFixtures());
+            existingWork.setFixtures(new ArrayList<>(updatedWork.getFixtures()));
             existingWork.setDate(updatedWork.getDate());
             existingWork.setMileage(updatedWork.getMileage());
             // Update other properties as needed
