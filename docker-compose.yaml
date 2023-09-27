@@ -3,7 +3,7 @@ services:
   repairing-app:
     image: openjdk:17.0.1-jdk-slim
     env_file:
-      - /home/cirom/IdeaProjects/RepairingApp/sendgrid.env
+      - ./sendgrid.env
     ports:
       - "8080:8080"
     volumes:
