@@ -10,7 +10,7 @@ public class SendEmailService {
 
     public static void sendEmail(EmailDetails emailDetails) throws IOException {
 
-        Email from = new Email("citrom333@gmail.com");
+        Email from = new Email(System.getenv("SENDER_EMAIL"));
         String subject = emailDetails.getSubject();
         Email to = new Email(emailDetails.getAddress());
         Content content = new Content("text/plain", emailDetails.getContent());
