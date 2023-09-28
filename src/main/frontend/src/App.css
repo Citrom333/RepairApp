@@ -1,8 +1,62 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
 
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+a {
+  font-weight: 500;
+  color: #63636a;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #dedfed;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #395b79;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #b3b4c4;
+  }
 }
 
 body {
@@ -20,12 +74,6 @@ body {
   transition: filter 300ms;
 }
 
-.mini_logo {
-  height: 7em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
 
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
@@ -33,14 +81,6 @@ body {
 
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
 
 ul {
@@ -79,14 +119,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.custom-table {
-  width: 100vw;
-  margin: 0;
-  display: block;
-  overflow-x: auto;
+.table {
+  padding: 10px;
 }
 
 table {
+  align-self: center;
   padding: auto;
   border-radius: 8%;
   width: 100%;
@@ -114,24 +152,9 @@ tr:hover {
   background-color: #888;
 }
 
-.page {
-  margin-left: 10px;
+.mainPage {
   text-align: center;
   animation: fadein 2s;
-  height: 100vh;
-  /* A viewport magasságát veszi alapul */
-  overflow: hidden;
-  /* Rejtse el a tartalomtól való kifolyást */
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0
-  }
-
-  to {
-    opacity: 1
-  }
 }
 
 .vehicle_details {
@@ -139,52 +162,34 @@ tr:hover {
   padding: 30px;
   background-color: rgb(28, 24, 52);
   z-index: -1;
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
+  overflow-y: auto;
 }
 
 form input,
 form textarea,
 form select {
-  /* Add some basic styling */
   padding: 0.75em;
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 1em;
-
-  /* Add some spacing between form controls */
   margin-bottom: 1em;
 
-  /* Style the focus state */
   &:focus {
     outline: none;
     border-color: #666;
   }
 }
 
-/* Style the textarea element specifically */
 form textarea {
   min-height: 200px;
   resize: vertical;
   color: #7f8387;
 }
 
-/* Style the select element specifically */
 form select {
-  /* Reset the appearance to remove the default styling */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-
-  /* Add a small arrow to the select element */
   background-color: rgb(72, 73, 95);
   color: #a8b2bd;
 
@@ -195,34 +200,6 @@ form input {
   padding: 20px;
   background-color: rgb(72, 73, 95);
   color: rgb(164, 241, 236);
-}
-
-
-.sideBar {
-  z-index: 3;
-  width: 250px;
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  position: fixed;
-  bottom: 0;
-  /* Elhelyezés az oldal alján */
-  top: 0;
-  /* A navbar magasságától a teljes magasságig terjed */
-  overflow-y: auto;
-  left: 0;
-  /* Görgethetőség a tartalom esetén */
-  /*  display: flex;*/
-}
-
-.sideBar_list {
-  grid: 0%
-}
-
-.sideBar_list_element {
-  display: grid;
-  padding: 10px 0;
-  font-size: larger;
 }
 
 .emailContent {
@@ -257,8 +234,104 @@ form input {
   font-size: 30px;
 }
 
-.backgroundGear {
-  top: 0;
-  right: 0;
-  position: fixed;
+@media only screen and (min-width: 1000px) {
+  .mini_logo {
+    height: 7em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+
+  .navbarAndPage {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .page {
+    flex: 5;
+    min-width: 320px;
+    text-align: center;
+    animation: fadein 2s;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .sideBar {
+    flex: 1;
+    min-width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    bottom: 0;
+    top: 0;
+    overflow-y: auto;
+    left: 0;
+  }
+
+  .sideBar_list {
+    grid: 0%
+  }
+
+  .sideBar_list_element {
+    display: grid;
+    padding: 10px 0;
+    font-size: larger;
+  }
+
+
+}
+
+@media only screen and (max-width: 999px) {
+  .mini_logo {
+    display: none;
+  }
+
+  .navbarAndPage {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .page {
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    animation: fadein 2s;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .sideBar {
+    flex-direction: column;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    bottom: 0;
+    top: 0;
+    overflow-x: hidden;
+    left: 0;
+  }
+
+  .sideBar_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sideBar_list_element {
+    flex: auto;
+    padding: 10px 0;
+    font-size: larger;
+    margin-right: 10px;
+  }
 }

@@ -46,7 +46,7 @@ export default function DetailsOfWork() {
     }
 
     return (
-        <div>
+        <div className="navbarAndPage">
             <Navbar />
             <div className="page">
                 {work == null ? <p>Loading...</p> : <div>

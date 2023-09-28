@@ -65,7 +65,7 @@ export default function NewWork() {
         navigate('/newfixture');
     }
     return (
-        <div>
+        <div className="navbarAndPage">
             <Navbar />
             <div className="page">
                 <form className="form" onSubmit={handleSubmit}>
@@ -116,7 +116,7 @@ export default function NewWork() {
                         </button>
                     </a>
                 </div>
-                <img src={gears} className="backgroundGear" alt="gear" />
+                {/* <img src={gears} className="backgroundGear" alt="gear" /> */}
             </div>
         </div>
     )

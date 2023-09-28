@@ -50,7 +50,7 @@ export default function NewFixture() {
         navigate('/newShop');
     }
     return (
-        <div>
+        <div className="navbarAndPage">
             <Navbar />
             <div className="page">
                 <form className="form" onSubmit={handleSubmit}>

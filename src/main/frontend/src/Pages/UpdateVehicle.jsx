@@ -40,7 +40,7 @@ export default function UpdateVehicle() {
     };
     return (
         <>
-            <div>
+            <div className="navbarAndPage">
                 <Navbar />
                 <div className="page">
                     <form className="form" onSubmit={handleSubmit}>

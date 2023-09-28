@@ -55,7 +55,7 @@ export default function NewEmail() {
         setAddress(shops.find(s => s.id == shop).email);
     }
     return (
-        <div>
+        <div className="navbarAndPage">
             <Navbar />
             <div className="page">
                 <form className="form" onSubmit={handleSubmit}>

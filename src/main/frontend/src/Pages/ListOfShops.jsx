@@ -56,7 +56,7 @@ export default function ListOfShops() {
     const pageCount = Math.ceil(shops.length / itemsPerPage);
 
     return (
-        <div>
+        <div className="navbarAndPage">
             <Navbar />
             <div className="page">
                 <h1>List of shops</h1>

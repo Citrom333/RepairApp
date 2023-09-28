@@ -85,7 +85,7 @@ export default function Vehicles() {
     const pageCount = Math.ceil(works.length / itemsPerPage);
 
     return (
-        <div>
+        <div className="navbarAndPage">
             <Navbar />
             <div className="page">
                 {showVehicle === null ?
