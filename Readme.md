@@ -5,7 +5,10 @@
 <img src=https://svgsilh.com/svg/145804.svg alt="gear" width="200"/>
 
 ## Table of Content
-I think this is a must-include section for a large readme file. This will help the user while navigating through different sections.
+1. [ Description. ](https://github.com/Citrom333/RepairApp#description)
+2. [ Working of the project. ](https://github.com/Citrom333/RepairApp#working-of-the-project)
+3. [ Installation Guide. ](https://github.com/Citrom333/RepairApp#installation-guide)
+
 
 ## Description
 
@@ -17,6 +20,7 @@ The database is MSSQL.
 
 Everything is running from docker compose, so it is easy to start the whole application with just one command.
 I also used Sendgrid REST API for sending emails.
+
 
 ## Working of the project
 
@@ -35,6 +39,7 @@ You can add new work to them in a simple form, where you can add the used fixtur
 You can also see a list of the shops, where you can buy the fixtures, and get in contact with them on the e-mail sender page.
 
 <img src=src/picturesForReadme/email.png alt="email" width="500"/>
+
 
 ## Installation Guide
 
@@ -96,4 +101,5 @@ Then any time you want to start the program: (In the RepairingApp folder)
 
 In Windows: you have to start Docker desktop application, then run repairApp_start.bat.
 
+## <span style="color:darkgreen">Best wishes, Citrom</span>
 
