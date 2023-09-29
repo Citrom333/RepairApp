@@ -67,7 +67,7 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 
 You also need to configurate email sending. 
 
-Create a new sendgrid.env file in the RepairinApp folder, with the following content:
+Create a new sendgrid.env file in the RepairingApp folder, with the following content:
 
     SENDGRID_API_KEY=""
 
